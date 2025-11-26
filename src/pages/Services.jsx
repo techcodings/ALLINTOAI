@@ -1,91 +1,92 @@
+// src/pages/Services.jsx
 import React from "react";
 
-const services = [
+const serviceItems = [
   {
     title: "Custom AI Workflow Automation",
-    description:
-      "End-to-end design and deployment of AI-driven automated workflows tailored to specific business processes.",
-    bullets: [
+    image: "/media/services/svc-1.png",
+    points: [
       "Map current processes and identify automation opportunities.",
-      "Design AI-driven workflows that integrate with existing tools.",
+      "Design AI-powered workflows that integrate with existing tools.",
       "Monitor, iterate and improve automation over time."
     ]
   },
   {
-    title: "Scalable AI Model Development & Deployment",
-    description:
-      "Custom AI model building, training and fine-tuning with managed deployment for reliable, secure operation.",
-    bullets: [
-      "Model design, experimentation and evaluation.",
-      "MLOps pipelines for training, versioning and rollout.",
-      "Guardrails and monitoring for production models."
+    title: "AI Model Development & Deployment",
+    image: "/media/services/svc-2.png",
+    points: [
+      "Build and fine-tune ML models tailored to your data.",
+      "Deploy with CI/CD, rollback strategies and observability.",
+      "Continuously retrain using production feedback loops."
     ]
   },
   {
-    title: "AI Infrastructure as a Service",
-    description:
-      "Cloud-based AI infrastructure provisioning across compute, storage and networking.",
-    bullets: [
-      "Multi-tenant, scalable environments for AI workloads.",
-      "Infrastructure-as-code for repeatable environments.",
-      "Support for continuous integration and delivery."
+    title: "Data & AI Infrastructure",
+    image: "/media/services/svc-3.png",
+    points: [
+      "Modern data pipelines for real-time and batch workloads.",
+      "Feature stores, vector databases and scalable storage.",
+      "Security, governance and access control baked in."
     ]
   },
   {
     title: "Decision Intelligence & Analytics",
-    description:
-      "Real-time AI-powered analytics dashboards and decision support systems.",
-    bullets: [
-      "Predictive and prescriptive analytics tailored to your industry.",
-      "Executive dashboards that connect models to KPIs.",
-      "Self-service analytics access for stakeholders."
+    image: "/media/services/svc-4.png",
+    points: [
+      "Executive dashboards and self-serve analytics.",
+      "Scenario simulation and what-if impact analysis.",
+      "Explainable metrics your teams can trust."
     ]
   },
   {
-    title: "AI Integration & API Services",
-    description:
-      "AI service APIs for NLP, vision and recommendation capabilities.",
-    bullets: [
-      "Custom API workflows and low-code automation tools.",
-      "Integration into CRMs, ERPs and internal apps.",
-      "Secure access control and rate limiting."
+    title: "API Integration & Platform Services",
+    image: "/media/services/svc-5.png",
+    points: [
+      "Connect SaaS, legacy systems and custom apps.",
+      "Unified APIs for AI, data and automation endpoints.",
+      "Resilient, well-documented interfaces."
     ]
   },
   {
-    title: "End-to-End AI Adoption Consulting",
-    description:
-      "Strategic consulting to guide your AI transformation journey.",
-    bullets: [
-      "AI roadmapping and capability assessment.",
-      "Training for teams to work effectively with AI.",
-      "Continuous improvement programs and governance."
+    title: "End-to-End AI Adoption",
+    image: "/media/services/svc-6.png",
+    points: [
+      "Strategy, discovery workshops and use-case selection.",
+      "Roadmaps from MVP to full enterprise rollout.",
+      "Training and change management for your teams."
     ]
   }
 ];
 
 const Services = () => {
   return (
-    <div className="page">
+    <div className="page page-services">
       <section className="section animate-up">
         <div className="section-header">
-          <h1>Core AI Services</h1>
+          <h1>Core AI &amp; IT Services</h1>
           <p>
-            Six service pillars that cover the full AI lifecycle—from discovery
-            to deployment.
+            Six service pillars that cover the full lifecycle—from discovery
+            and design to deployment, monitoring and continuous improvement.
           </p>
         </div>
 
-        <div className="cards-grid">
-          {services.map((service) => (
-            <div className="card card-service" key={service.title}>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <ul>
-                {service.bullets.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
+        <div className="service-grid">
+          {serviceItems.map((svc) => (
+            <article className="service-card" key={svc.title}>
+              <div className="service-media">
+                <div className="service-image-shell">
+                  <img src={svc.image} alt={svc.title} />
+                </div>
+              </div>
+              <div className="service-body">
+                <h3>{svc.title}</h3>
+                <ul>
+                  {svc.points.map((p) => (
+                    <li key={p}>{p}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
           ))}
         </div>
       </section>

@@ -21,7 +21,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Desktop links + CTA (hidden on small screens via CSS) */}
+        {/* Desktop + mobile links */}
         <nav
           className={
             "nav-links" + (mobileOpen ? " nav-links-open" : "")
@@ -37,6 +37,7 @@ const Navbar = () => {
           >
             Home
           </NavLink>
+
           <NavLink
             to="/about"
             className={({ isActive }) =>
@@ -46,6 +47,7 @@ const Navbar = () => {
           >
             About
           </NavLink>
+
           <NavLink
             to="/services"
             className={({ isActive }) =>
@@ -55,6 +57,18 @@ const Navbar = () => {
           >
             Services
           </NavLink>
+
+          {/* 🆕 Industries link */}
+          <NavLink
+            to="/industries"
+            className={({ isActive }) =>
+              isActive ? "nav-link nav-link-active" : "nav-link"
+            }
+            onClick={closeMobile}
+          >
+            Industries
+          </NavLink>
+
           <NavLink
             to="/contact"
             className={({ isActive }) =>
