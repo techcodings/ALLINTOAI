@@ -21,7 +21,7 @@ const Layout = () => {
           </div>
           <div className="splash-title">ALL INTO AI</div>
           <div className="splash-subtitle">
-            Backend · SaaS · GenAI for businesses
+             SaaS · GenAI for businesses
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 // src/components/Navbar.jsx
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import "../styles/Header.css"; // ✅ make sure this is imported
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -9,22 +10,35 @@ const Navbar = () => {
 
   return (
     <header className="nav-root">
-      <div className="nav-inner">
-        {/* Brand */}
+      <div className="nav-inner nav-inner-centered">
+        {/* Brand (click → Home) */}
         <div className="nav-left">
-          <img
-            src="/logo-allintoai.png"
-            alt="All Into AI logo"
-            className="nav-logo"
-          />
-          <div className="nav-brand-text">
-            <span className="nav-title">ALL INTO AI</span>
-            <span className="nav-subtitle">Together With AI.</span>
-          </div>
+          <NavLink
+            to="/"
+            className="nav-brand"
+            onClick={closeMobile}
+          >
+            <img
+              src="/logo-allintoai.png"
+              alt="All Into AI logo"
+              className="nav-logo"
+            />
+            <div className="nav-brand-text">
+              <span className="nav-title">ALL INTO AI</span>
+              <span className="nav-subtitle">
+                All in one AI solutions for businesses
+              </span>
+            </div>
+          </NavLink>
         </div>
 
-        {/* Desktop + mobile links */}
-        <nav className={"nav-links" + (mobileOpen ? " nav-links-open" : "")}>
+        {/* Centered nav links */}
+        <nav
+          className={
+            "nav-links nav-links-centered" +
+            (mobileOpen ? " nav-links-open" : "")
+          }
+        >
           <NavLink
             to="/"
             end
@@ -56,7 +70,6 @@ const Navbar = () => {
             Services
           </NavLink>
 
-          {/* AI Adoption Dashboard */}
           <NavLink
             to="/dashboard"
             className={({ isActive }) =>
@@ -88,9 +101,13 @@ const Navbar = () => {
           </NavLink>
         </nav>
 
-        {/* Primary CTA */}
+        {/* Right side CTA */}
         <div className="nav-cta">
-          <NavLink to="/contact" className="btn btn-primary nav-cta-btn">
+          <NavLink
+            to="/contact"
+            className="btn btn-primary nav-cta-btn"
+            onClick={closeMobile}
+          >
             Get Consultation
           </NavLink>
         </div>

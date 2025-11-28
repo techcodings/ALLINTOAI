@@ -1,94 +1,94 @@
 // src/pages/Home.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 /* ======= DATA CONFIG ======= */
 
 const featureStats = [
   {
-    label: "Backend & API Projects",
+    label: "Clients exploring AI",
     value: "40+",
-    detail: "SaaS, microservices & integrations"
+    detail: "Across automation, analytics and infrastructure",
   },
   {
-    label: "AI & GenAI Use Cases",
+    label: "AI & GenAI use cases",
     value: "25+",
-    detail: "Assistants, copilots & automation"
+    detail: "Workflows, copilots, decision intelligence",
   },
   {
-    label: "Cloud Deployments",
+    label: "Cloud-ready deployments",
     value: "3+",
-    detail: "AWS · Azure · GCP ready"
+    detail: "Built for AWS · Azure · GCP",
   },
   {
-    label: "Industries Served",
+    label: "Industries served",
     value: "5+",
-    detail: "B2B focus across verticals"
-  }
+    detail: "From SaaS to finance, retail and more",
+  },
 ];
 
 /* === 6 services preview (MATCHING Services.jsx) === */
 const homeServices = [
   {
-    title: "Backend & API Engineering",
+    title: "Custom AI Workflow Automation",
     image: "/media/services/svc-1.png",
-    category: "SaaS Backend",
+    category: "Automation",
     points: [
-      "Design and build REST / GraphQL APIs for web and mobile.",
-      "Multi-tenant SaaS architectures with proper tenancy isolation.",
-      "PostgreSQL / MySQL, Redis, caching and observability."
-    ]
+      "Design and deploy AI-driven workflows tailored to your processes.",
+      "Integrate with CRMs, ERPs and internal tools to reduce manual work.",
+      "Track adoption and ROI with clear operational metrics.",
+    ],
   },
   {
-    title: "AI Model Development & GenAI Features",
+    title: "Scalable AI Model Development & Deployment",
     image: "/media/services/svc-2.png",
-    category: "GenAI & ML",
+    category: "Models",
     points: [
-      "Classical ML and GenAI features integrated into your product.",
-      "Use OpenAI or open-source LLMs depending on your constraints.",
-      "Guardrails, logging and evaluation loops built in."
-    ]
+      "Build, fine-tune and deploy custom AI / GenAI models.",
+      "Production-ready MLOps, monitoring and versioning.",
+      "Secure, low-latency endpoints for your apps and teams.",
+    ],
   },
   {
-    title: "Data & AI Infrastructure",
+    title: "AI Infrastructure as a Service",
     image: "/media/services/svc-3.png",
-    category: "Data Platform",
+    category: "Infrastructure",
     points: [
-      "Modern data pipelines for real-time and batch workloads.",
-      "Feature stores, vector databases and scalable storage.",
-      "Security, governance and access control baked in."
-    ]
+      "Cloud-based AI infrastructure provisioning (compute, storage, networking).",
+      "Multi-tenant, scalable environments for AI workloads.",
+      "Security and governance aligned with enterprise standards.",
+    ],
   },
   {
-    title: "Decision Intelligence & Dashboards",
+    title: "Decision Intelligence & Analytics",
     image: "/media/services/svc-4.png",
     category: "Analytics",
     points: [
-      "Executive dashboards with AI-driven insights.",
-      "Scenario simulation and what-if impact analysis.",
-      "Explainable metrics your teams can trust."
-    ]
+      "Real-time AI-powered analytics dashboards for leaders.",
+      "Predictive and prescriptive insights tailored to your industry.",
+      "Explainable metrics and narrative insights, not just charts.",
+    ],
   },
   {
-    title: "API Integration & Platform Services",
+    title: "AI Integration & API Services",
     image: "/media/services/svc-5.png",
-    category: "Integrations",
+    category: "APIs",
     points: [
-      "Connect SaaS, legacy systems and custom apps.",
-      "Unified APIs for AI, data and automation endpoints.",
-      "Resilient, well-documented interfaces."
-    ]
+      "NLP, vision and recommendation APIs integrated into your stack.",
+      "Custom orchestration and low-code automation tools.",
+      "Stable, well-documented, enterprise-friendly interfaces.",
+    ],
   },
   {
-    title: "End-to-End AI Adoption",
+    title: "End-to-End AI Adoption Consulting",
     image: "/media/services/svc-6.png",
-    category: "Strategy",
+    category: "Consulting",
     points: [
-      "Strategy, discovery workshops and use-case selection.",
-      "Roadmaps from MVP to full enterprise rollout.",
-      "Training and change management for your teams."
-    ]
-  }
+      "Strategic AI roadmap from idea to production.",
+      "Hands-on training and change management for teams.",
+      "Continuous optimisation based on usage and outcomes.",
+    ],
+  },
 ];
 
 /* 5 industries preview – keep in sync with Industries.jsx */
@@ -97,32 +97,32 @@ const homeIndustries = [
     title: "Financial Services",
     image: "/media/industries/ind-1.png",
     description:
-      "Fraud detection, risk scoring, document automation and personalised client journeys."
+      "Fraud detection, risk scoring, document automation and personalised client journeys.",
   },
   {
     title: "Healthcare & Life Sciences",
     image: "/media/industries/ind-2.png",
     description:
-      "Patient intake automation, clinical insights, medical imaging support and care coordination."
+      "Patient intake automation, clinical insights, medical imaging support and care coordination.",
   },
   {
     title: "Retail & eCommerce",
     image: "/media/industries/ind-4.png",
     description:
-      "Demand forecasting, recommendation engines, merchandising optimisation and chat commerce."
+      "Demand forecasting, recommendation engines, merchandising optimisation and chat commerce.",
   },
   {
     title: "Manufacturing & Supply Chain",
     image: "/media/industries/ind-3.png",
     description:
-      "Predictive maintenance, quality inspection, planning and logistics optimisation."
+      "Predictive maintenance, quality inspection, planning and logistics optimisation.",
   },
   {
     title: "Technology & SaaS",
     image: "/media/industries/ind-5.png",
     description:
-      "AI copilots, product analytics, support automation and platform-level AI features."
-  }
+      "AI copilots, product analytics, support automation and platform-level AI features.",
+  },
 ];
 
 /* Promo media – 2 videos + brochure PDF */
@@ -130,17 +130,17 @@ const promoVideos = [
   {
     title: "All Into AI · 60s Overview",
     description:
-      "A quick tour of how we blend backend, SaaS and GenAI for B2B teams.",
+      "A quick tour of how we help businesses think, act and scale intelligently with AI.",
     src: "/media/promo1.mp4",
-    duration: "0:32"
+    duration: "0:32",
   },
   {
-    title: "Platform Walkthrough",
+    title: "Together With AI – Motion Clip",
     description:
-      "See the live control panel, monitoring and AI workflow orchestration.",
+      "Corporate motion video showcasing AI workflow automation and decision intelligence.",
     src: "/media/promo2.mp4",
-    duration: "0:15"
-  }
+    duration: "0:15",
+  },
 ];
 
 const BROCHURE_URL = "/media/brochure.pdf";
@@ -150,59 +150,58 @@ const aiAdoptionMetrics = [
   {
     region: "North America",
     stat: "62%+",
-    detail: "Organisations report at least one AI use case in production."
+    detail: "Organisations report at least one AI use case in production.",
   },
   {
     region: "Europe",
     stat: "47%+",
-    detail: "Strong focus on process automation and customer experience."
+    detail: "Strong focus on process automation and customer experience.",
   },
   {
     region: "APAC",
     stat: "50%+",
-    detail: "Fastest growth in AI investments and pilots."
+    detail: "Fastest growth in AI investments and pilots.",
   },
   {
     region: "Global",
     stat: "30–35%",
-    detail: "Year-on-year increase in GenAI interest across enterprises."
-  }
+    detail: "Year-on-year increase in GenAI interest across enterprises.",
+  },
 ];
 
 /* ---------- B2B CHAT WIDGET CONFIG ---------- */
 
-/* more than 3 quick prompts – looks richer & more dynamic */
 const businessPrompts = [
   {
     id: "saas",
     label: "B2B SaaS product",
-    prompt: "We run a B2B SaaS platform and want to embed GenAI."
+    prompt: "We run a B2B SaaS platform and want to embed GenAI.",
   },
   {
     id: "support",
     label: "Customer support team",
-    prompt: "We want AI to assist our support agents."
+    prompt: "We want AI to assist our support agents.",
   },
   {
     id: "ops",
     label: "Operations / back office",
-    prompt: "We want to automate repetitive internal processes."
+    prompt: "We want to automate repetitive internal processes.",
   },
   {
     id: "roadmap",
     label: "6-month AI roadmap",
-    prompt: "We need a 6-month AI adoption roadmap aligned with our business goals."
+    prompt: "We need a 6-month AI adoption roadmap aligned with our business goals.",
   },
   {
     id: "security",
     label: "Security & compliance",
-    prompt: "How will you secure data, models and access to the AI features?"
+    prompt: "How will you secure data, models and access to the AI features?",
   },
   {
     id: "dashboards",
     label: "Executive dashboards",
-    prompt: "We want AI-powered dashboards for leadership and KPIs."
-  }
+    prompt: "We want AI-powered dashboards for leadership and KPIs.",
+  },
 ];
 
 const responsesByIntent = {
@@ -215,17 +214,17 @@ const responsesByIntent = {
   roadmap:
     "A typical 6-month roadmap: Month 1–2: discovery, data audit and priority use-case shortlist. Month 3–4: build 1–2 pilot solutions (e.g., support copilot + analytics summaries). Month 5–6: harden security, add monitoring, roll out to more teams and measure ROI. Everything is backed by clear success metrics and training plans.",
   security:
-    "Security for an AI SaaS stack usually includes: SSO / OAuth2 / OpenID Connect, per-tenant data isolation, encryption in transit and at rest, secret management (KMS / Vault), role-based access control, red-team style prompt-injection testing and full audit logs. We can deploy on your cloud (AWS / Azure / GCP) and align with SOC2 / ISO27001 practices.",
+    "Security for an AI stack usually includes: SSO / OAuth2 / OpenID Connect, per-tenant data isolation, encryption in transit and at rest, secret management (KMS / Vault), role-based access control, red-team style prompt-injection testing and full audit logs. We can deploy on your cloud (AWS / Azure / GCP) and align with SOC2 / ISO27001 practices.",
   dashboards:
-    "For leadership dashboards, we combine: (1) curated KPIs from your warehouse/lakehouse, (2) an AI layer that explains changes in plain language, (3) scenario simulation (what-if analysis) and (4) drill-downs into underlying events. Frontend can be custom React, while the backend can sit on top of dbt/BigQuery/Snowflake or Postgres."
+    "For leadership dashboards, we combine: (1) curated KPIs from your warehouse/lakehouse, (2) an AI layer that explains changes in plain language, (3) scenario simulation (what-if analysis) and (4) drill-downs into underlying events. Frontend can be custom React, while the backend can sit on top of dbt/BigQuery/Snowflake or Postgres.",
 };
 
 const initialMessages = [
   {
     role: "assistant",
     text:
-      "Hi 👋 I’m your B2B AI copilot. Tell me about your business (SaaS, support, operations, etc.) and I’ll suggest concrete AI use cases and architecture ideas."
-  }
+      "Hi 👋 I’m your B2B AI copilot. Tell me about your business and I’ll suggest concrete AI use cases and architecture ideas.",
+  },
 ];
 
 const genericResponse =
@@ -255,7 +254,7 @@ const B2BChatWidget = () => {
     setMessages((prev) => [
       ...prev,
       { role: "user", text: trimmed },
-      { role: "assistant", text: reply }
+      { role: "assistant", text: reply },
     ]);
     setInput("");
   };
@@ -267,7 +266,7 @@ const B2BChatWidget = () => {
 
   return (
     <div className="chat-widget-root">
-      {/* Floating bubble */}
+      {/* Floating bubble bottom-right */}
       <button
         type="button"
         className={`chat-launcher ${isOpen ? "chat-launcher-open" : ""}`}
@@ -277,14 +276,13 @@ const B2BChatWidget = () => {
         <span className="chat-launcher-icon">💬</span>
       </button>
 
-      {/* Chat window */}
       {isOpen && (
         <div className="chat-window">
           <div className="chat-window-header">
             <div>
               <div className="chat-title">All Into AI · B2B Chat</div>
               <div className="chat-subtitle">
-                Business-first Q&amp;A – demo only, no data stored.
+                all in one AI solutions for businesses – demo chat only.
               </div>
             </div>
             <div className="chat-header-actions">
@@ -341,7 +339,7 @@ const B2BChatWidget = () => {
           <form className="b2b-chat-input-row" onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Ask about your SaaS, support team or AI roadmap…"
+              placeholder="Ask about automation, dashboards or AI roadmap…"
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
@@ -351,8 +349,8 @@ const B2BChatWidget = () => {
           </form>
 
           <div className="chat-footer-note">
-            Built with an open-source-friendly architecture – can plug into
-            Rasa / Botpress / Flowise or a custom LLM API.
+            Built to plug into Rasa / Botpress / Flowise or a custom LLM API in
+            production.
           </div>
         </div>
       )}
@@ -360,82 +358,143 @@ const B2BChatWidget = () => {
   );
 };
 
-/* ---------- HOME PAGE ---------- */
+/* ---------- HOME PAGE WITH SPLASH / LOADING ANIMATION ---------- */
 
 const Home = () => {
+  const [showSplash, setShowSplash] = useState(true);
+  const [phase, setPhase] = useState(0); // 0: icon, 1: +AllIntoAI, 2: +TogetherWithAI, 3: 100% loaded
+
+  useEffect(() => {
+    // sequence: icon -> logo text -> tagline -> 100% -> hide
+    let step = 0;
+    const interval = setInterval(() => {
+      step += 1;
+      setPhase(step);
+      if (step === 4) {
+        clearInterval(interval);
+        // small delay so 100% is visible
+        setTimeout(() => setShowSplash(false), 400);
+      }
+    }, 600);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="page page-home">
+      {/* ===== SPLASH / LOADING OVERLAY ===== */}
+      {showSplash && (
+        <div className="splash-root">
+          <div className="splash-inner">
+            <div className="splash-logo-block">
+              {/* Logo icon – big */}
+              <img
+                src="/logo-allintoai.png"
+                alt="All Into AI logo"
+                className="splash-logo-icon"
+                style={{ width: "130px", height: "auto" }}
+              />
+
+              {/* Step 2: brand name */}
+              {phase >= 1 && (
+                <div className="splash-brand">
+                  <span className="splash-brand-text">ALL INTO AI</span>
+                </div>
+              )}
+
+              {/* Step 3: tagline 'Together With AI.' */}
+              {phase >= 2 && (
+                <div className="splash-tagline-main">Together With AI.</div>
+              )}
+
+              {/* Step 4: 100% loaded */}
+              {phase >= 3 && (
+                <div className="splash-progress">
+                  <div className="splash-progress-bar">
+                    <div className="splash-progress-fill" />
+                  </div>
+                  <span className="splash-progress-label">100% loaded</span>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ================= HERO ================= */}
       <section className="hero-wrap hero-neon">
         <div className="hero-background-grid" />
 
         <div className="hero-content">
-          {/* LEFT TEXT */}
+          {/* LEFT TEXT – updated narrative */}
           <div className="hero-left animate-up">
-            <div className="hero-tag-row">
-              <span className="hero-pill">
-                Backend · SaaS · GenAI Services
-              </span>
+            <div className="hero-tag-row hero-tag-centered">
+              <span className="hero-pill">Together With AI.</span>
             </div>
 
-            <h1 className="hero-title">
-              Backend, SaaS &amp;
-              <span className="hero-title-accent"> GenAI for B2B teams.</span>
+            <h1 className="hero-title hero-title-centered">
+              Think, Act, and Scale{" "}
+              <span className="hero-title-accent">Intelligently with AI.</span>
             </h1>
 
-            <p className="hero-subtitle">
-              All Into AI builds secure backends, SaaS platforms and GenAI
-              features so your business can adopt AI with real dashboards, real
-              data and production-grade engineering.
+            <p className="hero-subtitle hero-subtitle-centered">
+              We help businesses automate workflows, enhance decision-making and
+              build scalable AI infrastructure — so AI becomes the core engine
+              of your growth.
             </p>
 
-            <div className="hero-cta-row">
+            <p className="hero-tagline hero-subtitle-centered">
+              <strong>all in one AI solutions for businesses.</strong>
+            </p>
+
+            <div className="hero-cta-row hero-cta-centered">
               <Link to="/contact" className="btn btn-primary hero-cta-main">
-                Get a Consultation
+                Get Started
               </Link>
               <Link to="/services" className="btn btn-ghost">
-                View Services
+                Transform Your Business
               </Link>
             </div>
           </div>
 
-          {/* RIGHT – CONTROL PANEL CARD */}
+          {/* RIGHT – AI control panel card */}
           <div className="hero-right animate-up-delayed">
             <div className="hero-panel hero-panel-neon">
               <div className="hero-panel-header">
-                <h3>Live SaaS &amp; AI Control</h3>
-                <span className="hero-status-dot">Healthy</span>
+                <h3>AI-as-a-Service Control</h3>
+                <span className="hero-status-dot">Live</span>
               </div>
 
               <p className="hero-panel-text">
-                A single view of your backend services, cloud deployments and AI
-                features—exactly how a modern SaaS + AI platform should behave.
+                A single view of your automated workflows, AI models and
+                decision dashboards — exactly how a modern AI-powered business
+                should operate.
               </p>
 
               <div className="hero-panel-tabs">
-                <span className="tab active">Cloud Deployments</span>
-                <span className="tab">API Health</span>
-                <span className="tab">AI Workflows</span>
+                <span className="tab active">Workflows</span>
+                <span className="tab">Models</span>
+                <span className="tab">Dashboards</span>
               </div>
 
               <div className="hero-panel-metrics">
                 <div className="metric-row">
-                  <span>Backend Services</span>
-                  <span>18</span>
+                  <span>Automated Workflows</span>
+                  <span>24</span>
                 </div>
                 <div className="metric-row">
-                  <span>AI Endpoints</span>
-                  <span>9</span>
+                  <span>Active AI Models</span>
+                  <span>11</span>
                 </div>
                 <div className="metric-row">
-                  <span>Incidents</span>
-                  <span style={{ color: "var(--accent)" }}>0 · Stable</span>
+                  <span>Decisions / Day</span>
+                  <span>10k+</span>
                 </div>
               </div>
 
               <p className="hero-footer-note">
-                This demo is static. In production, these tiles connect to real
-                metrics from your cloud and monitoring stack.
+                In production, these tiles connect to your cloud, data
+                warehouse and monitoring stack to show real-time AI impact.
               </p>
             </div>
           </div>
@@ -483,19 +542,19 @@ const Home = () => {
         </div>
 
         <p className="ai-dashboard-note">
-          In production we can pull from open reports (e.g., industry surveys)
-          and your own KPIs to build a realistic AI adoption dashboard.
+          In production we can pull from open reports and your own KPIs to build
+          a realistic AI adoption dashboard that updates automatically.
         </p>
       </section>
 
       {/* ================= SERVICES PREVIEW ================= */}
       <section className="section animate-up">
         <div className="section-header">
-          <h2>Backend &amp; AI Services We Deliver</h2>
+          <h2>Core AI Services We Deliver</h2>
           <p>
-            From backend engineering and data platforms to GenAI chatbots and
-            dashboards, we cover the full SaaS lifecycle from idea to
-            production.
+            From workflow automation and model deployment to AI infrastructure
+            and decision intelligence, All Into AI covers the full AI lifecycle
+            for your business.
           </p>
         </div>
 
@@ -568,9 +627,9 @@ const Home = () => {
           <div>
             <h2>Together With AI.</h2>
             <p>
-              We help businesses move from AI experiments to production systems
-              that actually run the business—automating workflows, supercharging
-              decisions and making infrastructure ready for AI workloads.
+              All Into AI is an AI-as-a-Service partner designed to help
+              businesses automate workflows and enhance decision-making with
+              scalable AI infrastructure.
             </p>
             <ul className="bullet-list">
               <li>
@@ -603,8 +662,9 @@ const Home = () => {
         <div className="section-header">
           <h2>See All Into AI in Action</h2>
           <p>
-            Watch short promos and download the brochure to understand how we
-            combine backend, SaaS and AI to modernise your stack.
+            Watch short clips and download the brochure to understand how we
+            combine automation, analytics and AI infrastructure for business
+            impact.
           </p>
         </div>
 
@@ -614,7 +674,6 @@ const Home = () => {
               <div className="media-video-shell">
                 <video src={video.src} controls preload="metadata" />
                 <div className="media-video-overlay">
-                 
                   <span className="media-duration">{video.duration}</span>
                 </div>
               </div>
@@ -629,8 +688,9 @@ const Home = () => {
               <span className="media-pill">PDF · Company Brochure</span>
               <h3 className="media-title">All Into AI Capability Overview</h3>
               <p className="media-description">
-                A concise, client-ready PDF that covers our backend services, AI
-                stack, delivery model and sample use cases across industries.
+                A concise, client-ready PDF that covers our AI services,
+                infrastructure stack, delivery model and sample use cases across
+                industries.
               </p>
               <a
                 href={BROCHURE_URL}
@@ -648,10 +708,10 @@ const Home = () => {
       {/* ================= FINAL CTA ================= */}
       <section className="section section-soft animate-up">
         <div className="section-header">
-          <h2>Ready to Bring AI into Your Stack?</h2>
+          <h2>Ready to go All Into AI?</h2>
           <p>
-            Share a use-case, a dataset or just your business challenge. We&apos;ll
-            respond with a concrete way to test value in weeks—not years.
+            Share a use-case, a dataset or just your business challenge. We’ll
+            respond with a concrete way to test value in weeks — not years.
           </p>
         </div>
 
