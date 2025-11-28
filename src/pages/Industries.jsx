@@ -16,13 +16,13 @@ const industryItems = [
   },
   {
     name: "Retail & eCommerce",
-    image: "/media/industries/ind-3.png",
+    image: "/media/industries/ind-4.png",
     summary:
       "Demand forecasting, recommendation engines, merchandising optimisation and chat commerce."
   },
   {
     name: "Manufacturing & Supply Chain",
-    image: "/media/industries/ind-4.png",
+    image: "/media/industries/ind-3.png",
     summary:
       "Predictive maintenance, quality inspection, planning and logistics optimisation."
   },
@@ -51,7 +51,11 @@ const Industries = () => {
           {industryItems.map((ind) => (
             <article className="industry-card" key={ind.name}>
               <div className="industry-image-shell">
-                <img src={ind.image} alt={ind.name} />
+                <img
+                  src={ind.image}
+                  alt={ind.name}
+                  loading="lazy"
+                />
               </div>
               <div className="industry-body">
                 <h3>{ind.name}</h3>

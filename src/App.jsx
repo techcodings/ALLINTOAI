@@ -4,8 +4,9 @@ import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
-import Industries from "./pages/Industries"; // 🆕 import
+import Industries from "./pages/Industries";
 import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard"; // ✅ new
 
 const App = () => {
   return (
@@ -14,8 +15,8 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="services" element={<Services />} />
-        {/* 🆕 new route for industries */}
         <Route path="industries" element={<Industries />} />
+        <Route path="dashboard" element={<Dashboard />} /> {/* ✅ new */}
         <Route path="contact" element={<Contact />} />
       </Route>
     </Routes>

@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
@@ -9,6 +10,7 @@ const Navbar = () => {
   return (
     <header className="nav-root">
       <div className="nav-inner">
+        {/* Brand */}
         <div className="nav-left">
           <img
             src="/logo-allintoai.png"
@@ -22,11 +24,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop + mobile links */}
-        <nav
-          className={
-            "nav-links" + (mobileOpen ? " nav-links-open" : "")
-          }
-        >
+        <nav className={"nav-links" + (mobileOpen ? " nav-links-open" : "")}>
           <NavLink
             to="/"
             end
@@ -58,7 +56,17 @@ const Navbar = () => {
             Services
           </NavLink>
 
-          {/* 🆕 Industries link */}
+          {/* AI Adoption Dashboard */}
+          <NavLink
+            to="/dashboard"
+            className={({ isActive }) =>
+              isActive ? "nav-link nav-link-active" : "nav-link"
+            }
+            onClick={closeMobile}
+          >
+            AI Dashboard
+          </NavLink>
+
           <NavLink
             to="/industries"
             className={({ isActive }) =>
@@ -80,6 +88,7 @@ const Navbar = () => {
           </NavLink>
         </nav>
 
+        {/* Primary CTA */}
         <div className="nav-cta">
           <NavLink to="/contact" className="btn btn-primary nav-cta-btn">
             Get Consultation
@@ -91,7 +100,7 @@ const Navbar = () => {
           className={
             "nav-menu-toggle" + (mobileOpen ? " nav-menu-toggle-open" : "")
           }
-          onClick={() => setMobileOpen((o) => !o)}
+          onClick={() => setMobileOpen((open) => !open)}
           aria-label="Toggle navigation"
         >
           <span />
